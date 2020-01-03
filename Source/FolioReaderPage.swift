@@ -223,7 +223,7 @@ open class FolioReaderPage: UICollectionViewCell, UIWebViewDelegate, UIGestureRe
         })
 
         delegate?.pageDidLoad?(self)
-        self.folioReader.delegate?.folioReaderLayoutDidChanged?()
+        self.folioReader.delegate?.folioReaderLayoutDidChanged?(webView)
     }
 
     open func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebView.NavigationType) -> Bool {
