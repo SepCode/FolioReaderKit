@@ -50,6 +50,10 @@ open class FolioReaderCenter: UIViewController, UICollectionViewDelegate, UIColl
     /// The collection view with pages
     open var collectionView: UICollectionView!
     
+    open func currentPageNum() -> Int {
+        return pageIndicatorView?.currentPage ?? 1
+    }
+    
     let collectionViewLayout = UICollectionViewFlowLayout()
     var loadingView: UIActivityIndicatorView!
     var pages: [String]!
