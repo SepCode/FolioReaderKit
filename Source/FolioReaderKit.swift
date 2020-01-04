@@ -92,7 +92,7 @@ public enum MediaOverlayStyle: Int {
     @objc optional func folioReaderDidClosed()
     
     /// Called when reader layout changed.
-    @objc optional func folioReaderLayoutDidChanged(_ webView: FolioReaderWebView?)
+    @objc optional func folioReaderLayoutDidChanged()
 }
 
 /// Main Library class with some useful constants and methods
@@ -216,7 +216,7 @@ extension FolioReader {
             if self.currentFont != font {
                 self.defaults.set(font.rawValue, forKey: kCurrentFontFamily)
                 _ = self.readerCenter?.currentPage?.webView?.js("setFontName('\(font.cssIdentifier)')")
-                self.delegate?.folioReaderLayoutDidChanged?(nil)                
+                self.delegate?.folioReaderLayoutDidChanged?()
             }
         }
     }
@@ -240,7 +240,7 @@ extension FolioReader {
             }
 
             currentPage.webView?.js("setFontSize('\(currentFontSize.cssIdentifier)')")
-            self.delegate?.folioReaderLayoutDidChanged?(nil)
+            self.delegate?.folioReaderLayoutDidChanged?()
         }
     }
 
@@ -288,7 +288,7 @@ extension FolioReader {
 
             let direction = (FolioReaderScrollDirection(rawValue: currentScrollDirection) ?? .defaultVertical)
             self.readerCenter?.setScrollDirection(direction)
-            self.delegate?.folioReaderLayoutDidChanged?(nil)
+            self.delegate?.folioReaderLayoutDidChanged?()
         }
     }
 
